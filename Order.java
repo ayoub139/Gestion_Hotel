@@ -1,11 +1,11 @@
 public class Order {
     public int id;
     public int price;
-    public ROOM room;
+    public Room room;
     public String name;
 
 
-    public Order(int id, int price, ROOM room, String name) {
+    public Order(int id, int price, Room room, String name) {
         this.id = id;
         this.price = price;
         this.room = room;
@@ -17,7 +17,7 @@ public class Order {
 
     public int getPrice(){return price;}
 
-    public ROOM getRoom(){return room;}
+    public Room getRoom(){return room;}
 
     public String getName(){return name;}
 
@@ -28,7 +28,7 @@ public class Order {
         this.price = p;
     }
 
-    public void setRoom(ROOM room)
+    public void setRoom(Room room)
     {
         this.room = room;
     }

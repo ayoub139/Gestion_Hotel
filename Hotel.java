@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class Hotel {
     public List<Booking> booking;
-    public List<ROOM> rooms;
+    public List<Room> rooms;
     public List<Bill> bills;
 
     public Hotel()
@@ -12,13 +12,13 @@ public class Hotel {
         this.bills = new ArrayList<>();
     }
 
-    public List<ROOM> getRooms(){return this.rooms;}
+    public List<Room> getRooms(){return this.rooms;}
 
     public List<Booking> getBooking(){return  this.booking;}
 
     public List<Bill> getBills(){return this.bills;}
 
-    public void addRoom(ROOM room)
+    public void addRoom(Room room)
     {
         rooms.add(room);
     }
