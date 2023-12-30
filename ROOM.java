@@ -7,7 +7,7 @@ public class ROOM {
     public List<Order> orders;
     public boolean availability;
 
-    public ROOM(int id , Category category , int price , Order orders, boolean availability)
+    public ROOM(int id , Category category , int price , List<Order> orders, boolean availability)
     {
         this.id = id;
         this.category = category;
