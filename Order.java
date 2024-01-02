@@ -6,6 +6,7 @@ public class Order {
 
 
     public Order(int id, int price, /*Booking booking,*/ String name) {
+
         this.id = id;
         this.price = price;
         //this.booking = booking;
@@ -17,7 +18,9 @@ public class Order {
 
     public int getPrice(){return price;}
 
+
     //public Booking getBooking(){return booking;}
+
 
     public String getName(){return name;}
 
@@ -28,7 +31,9 @@ public class Order {
         this.price = p;
     }
 
+
     /*public void setRoom(Booking booking)
+
     {
         this.booking = booking;
     }*/
