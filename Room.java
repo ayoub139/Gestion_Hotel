@@ -1,33 +1,39 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 public class Room {
     public int id;
-    public Category category;
     public int price;
-    public List<Order> orders;
+
     public boolean availability;
 
-    public Room(int id , Category category , int price , List<Order> orders, boolean availability)
+    public Room(int price ,  boolean availability)
     {
-        this.id = id;
-        this.category = category;
+        this.id = generateRandom();
         this.price = price;
-        this.orders = new ArrayList<>();
         this.availability = availability;
+    }
+    //Get a random id
+    protected static int generateRandom(){
+        Random random = new Random();
+        return random.nextInt(9999);
     }
     //Getters
     public int getId(){return id ;}
-    public Category getCategory(){return category;}
+    public String getCategoryName() {
+        return "Base Room";
+    }
+    public void getRoomDetails() {
+        System.out.println("Room Details: ID - " + getId() + ", Category - " + getCategoryName() + ", Price - " + getPrice());
+    }
+
+
     public int getPrice(){return price;}
-    public List<Order> getOrders(){return orders;}
-    public boolean getavailability(){return availability;}
+
+    public boolean getAvailability(){return availability;}
 
     //Setters
 
-    public void setCategory(Category cat)
-    {
-        this.category = cat;
-    }
 
     public void setPrice(int p)
     {
@@ -39,10 +45,7 @@ public class Room {
         this.availability = avb;
     }
 
-    public void addOrder(Order order)
-    {
-      orders.add(order);
-    }
+
 
 
 }

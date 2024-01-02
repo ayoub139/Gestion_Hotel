@@ -1,14 +1,14 @@
 public class Order {
     public int id;
     public int price;
-    public ROOM room;
+    //public Booking booking;
     public String name;
 
 
-    public Order(int id, int price, ROOM room, String name) {
+    public Order(int id, int price, /*Booking booking,*/ String name) {
         this.id = id;
         this.price = price;
-        this.room = room;
+        //this.booking = booking;
         this.name = name;
     }
 
@@ -17,7 +17,7 @@ public class Order {
 
     public int getPrice(){return price;}
 
-    public ROOM getRoom(){return room;}
+    //public Booking getBooking(){return booking;}
 
     public String getName(){return name;}
 
@@ -28,10 +28,10 @@ public class Order {
         this.price = p;
     }
 
-    public void setRoom(ROOM room)
+    /*public void setRoom(Booking booking)
     {
-        this.room = room;
-    }
+        this.booking = booking;
+    }*/
 
     public void setName(String name)
     {
