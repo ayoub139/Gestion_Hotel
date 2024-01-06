@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+
 public class Hotel {
 
     public List<Booking> bookings;
@@ -16,7 +17,8 @@ public class Hotel {
     public List<Room> getRooms() {
         return this.rooms;
     }
-    public List<Booking> getBooking() {
+
+    public List<Booking> getBookings() {
         return this.bookings;
     }
 
@@ -24,16 +26,15 @@ public class Hotel {
         return this.bills;
     }
 
-
-    public void addRoom(Room room) {
-
-    }
-
     public void addBooking(Booking book) {
         bookings.add(book);
     }
 
-    public void addRoom(Bill bill) {
+    public void addRoom(Room room) {
+        rooms.add(room);
+    }
+
+    public void addBill(Bill bill) {
         bills.add(bill);
     }
 
@@ -65,10 +66,27 @@ public class Hotel {
         return null;
     }
 
+    public Bill getBillById(int id) {
+        for (Bill bill : bills) {
+            if (bill.getId() == id) {
+                return bill;
+            }
+        }
+        return null;
+    }
+
     public void displayRoomAvailability() {
         for (Room room : rooms) {
             System.out.println("Room ID: " + room.getId() + ", Availability: " + room.getAvailability());
         }
     }
-}
 
+    public void removeBooking(Booking booking) {
+        booking.getRoom().setAvailability(true);
+        bookings.remove(booking);
+    }
+
+    public void removeBill(Bill bill) {
+        bills.remove(bill);
+    }
+}
