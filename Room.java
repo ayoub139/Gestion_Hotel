@@ -1,6 +1,7 @@
 import java.util.Random;
+import java.io.Serializable;
 
-public class Room {
+public class Room implements Serializable {
     public int id;
     public int price;
 

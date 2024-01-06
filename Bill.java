@@ -1,4 +1,6 @@
-public class Bill {
+import java.io.Serializable;
+
+public class Bill implements Serializable {
     public int id;
     public Booking booking;
     public int total;

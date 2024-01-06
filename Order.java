@@ -1,4 +1,6 @@
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
     public int id;
     public int price;
     public String name;

@@ -1,10 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Hotel {
+public class Hotel implements Serializable {
 
     public List<Booking> bookings;
-
     public List<Room> rooms;
     public List<Bill> bills;
 
@@ -28,14 +31,17 @@ public class Hotel {
 
     public void addBooking(Booking book) {
         bookings.add(book);
+        serializeHotel();
     }
 
     public void addRoom(Room room) {
         rooms.add(room);
+        serializeHotel();
     }
 
     public void addBill(Bill bill) {
         bills.add(bill);
+        serializeHotel();
     }
 
     public List<Room> getAvailableRooms() {
@@ -84,9 +90,19 @@ public class Hotel {
     public void removeBooking(Booking booking) {
         booking.getRoom().setAvailability(true);
         bookings.remove(booking);
+        serializeHotel();
     }
 
     public void removeBill(Bill bill) {
         bills.remove(bill);
+        serializeHotel();
+    }
+
+    public void serializeHotel() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("hotel.ser"))) {
+            out.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

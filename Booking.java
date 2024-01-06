@@ -1,7 +1,8 @@
 import java.util.Date;
 import java.util.List;
+import java.io.Serializable;
 
-public class Booking {
+public class Booking implements Serializable {
     public int id;
     public Room room;
     public Date startDate;

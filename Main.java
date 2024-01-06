@@ -5,6 +5,10 @@ import java.util.Random;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Calendar;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.File;
 
 public class Main {
     public static Integer getInt(Scanner scanner) {
@@ -184,6 +188,7 @@ public class Main {
                                 }
                                 selectedBooking.getRoom().setAvailability(true);
                                 selectedBooking.setRoom(selectedRoom);
+                                hotel.serializeHotel();
                                 break;
                             case "2":
                                 System.out.println("How many days do you want to book the room for?");
@@ -193,6 +198,7 @@ public class Main {
                                 calendar.add(Calendar.DATE, days);
                                 endDate = calendar.getTime();
                                 selectedBooking.setEndDate(endDate);
+                                hotel.serializeHotel();
                                 break;
                             case "3":
                                 System.out.println("What is the first name of the client?");
@@ -208,6 +214,7 @@ public class Main {
                                 selectedBooking.getClient().setLastName(lastName);
                                 selectedBooking.getClient().setPhoneNumber(phoneNumber);
                                 selectedBooking.getClient().setMail(mail);
+                                hotel.serializeHotel();
                                 break;
                             case "4":
                                 editingBooking = false;
@@ -298,6 +305,7 @@ public class Main {
                             price,
                             name);
                     selectedBooking.addOrder(newOrder);
+                    hotel.serializeHotel();
                     break;
                 case "2":
                     bookings = hotel.getBookings();
@@ -337,6 +345,7 @@ public class Main {
                     scanner.nextLine();
                     selectedOrder.setName(name);
                     selectedOrder.setPrice(price);
+                    hotel.serializeHotel();
                     break;
                 case "3":
                     bookings = hotel.getBookings();
@@ -370,6 +379,7 @@ public class Main {
                         break;
                     }
                     selectedBooking.removeOrder(selectedOrder);
+                    hotel.serializeHotel();
                     break;
                 case "4":
                     bookings = hotel.getBookings();
@@ -495,14 +505,35 @@ public class Main {
     }
 
     public static Hotel initializeHotel() {
-        List<Booking> bookingList = new ArrayList<>();
-        List<Room> roomList = new ArrayList<>();
-        List<Bill> billList = new ArrayList<>();
-        Hotel hotel = new Hotel(bookingList, roomList, billList);
-        hotel.addRoom(new LuxuryDouble(1500, true, true));
-        hotel.addRoom(new LuxurySimple(1000, true, true));
-        hotel.addRoom(new NormalDouble(500, true));
-        hotel.addRoom(new NormalSimple(250, true));
+        Hotel hotel;
+
+        try {
+            File file = new File("hotel.ser");
+            if (file.exists()) {
+                try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+                    hotel = (Hotel) in.readObject();
+                }
+            } else {
+                List<Booking> bookingList = new ArrayList<>();
+                List<Room> roomList = new ArrayList<>();
+                List<Bill> billList = new ArrayList<>();
+                hotel = new Hotel(bookingList, roomList, billList);
+                hotel.addRoom(new LuxuryDouble(1500, true, true));
+                hotel.addRoom(new LuxurySimple(1000, true, true));
+                hotel.addRoom(new NormalDouble(500, true));
+                hotel.addRoom(new NormalSimple(250, true));
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            List<Booking> bookingList = new ArrayList<>();
+            List<Room> roomList = new ArrayList<>();
+            List<Bill> billList = new ArrayList<>();
+            hotel = new Hotel(bookingList, roomList, billList);
+            hotel.addRoom(new LuxuryDouble(1500, true, true));
+            hotel.addRoom(new LuxurySimple(1000, true, true));
+            hotel.addRoom(new NormalDouble(500, true));
+            hotel.addRoom(new NormalSimple(250, true));
+        }
         return hotel;
     }
 
