@@ -21,7 +21,7 @@ public class Main {
         boolean goBack = false;
 
         while (goBack == false) {
-            System.out.println("-----Room informations-----");
+            System.out.println("-----Manage rooms-----");
             System.out.println("1: Room details");
             System.out.println("2: Available rooms");
             System.out.println("3: Go back");
@@ -444,7 +444,7 @@ public class Main {
         List<Bill> bills = null;
 
         while (goBack == false) {
-            System.out.println("-----Room informations-----");
+            System.out.println("-----Manage bills-----");
             System.out.println("1: Generate new bill");
             System.out.println("2: List bills");
             System.out.println("3: Delete a bill");
@@ -518,10 +518,10 @@ public class Main {
         try {
             while (true) {
                 System.out.println("-----Home menu-----");
-                System.out.println("1: Room informations");
+                System.out.println("1: Manage Rooms");
                 System.out.println("2: Manage bookings");
                 System.out.println("3: Manage orders");
-                System.out.println("4: Generate a bill");
+                System.out.println("4: Manage bills");
                 System.out.println("-------------------------");
                 input = scanner.nextLine();
                 switch (input) {
