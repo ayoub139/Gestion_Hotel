@@ -111,6 +111,7 @@ public class Main {
                     System.out.println("How many days do you want to book the room for?");
                     Integer days = getInt(scanner);
                     scanner.nextLine();
+
                     if (days == null) {
                         System.out.println("The input is not a number please try to book again");
                         break;
@@ -553,6 +554,7 @@ public class Main {
                 System.out.println("2: Manage bookings");
                 System.out.println("3: Manage orders");
                 System.out.println("4: Manage bills");
+                System.out.println("5 :Exit ");
                 System.out.println("-------------------------");
                 input = scanner.nextLine();
                 switch (input) {
@@ -563,10 +565,13 @@ public class Main {
                         manageBookings(ritz, scanner);
                         break;
                     case "3":
+
                         manageOrder(ritz, scanner);
                         break;
                     case "4":
                         manageBills(ritz, scanner);
+                    case "5":
+                        System.exit(1);
                     default:
                         System.out.println("Please enter a valid input");
                 }
